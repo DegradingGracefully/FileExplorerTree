@@ -45,11 +45,11 @@
 <div class="context-menu" style="left: {x}px; top: {y}px;">
     <ul>
         {#if fsItemType === FSItemType.DIRECTORY}
-        <li on:click={(event) => handleAddChild(FSItemType.FILE)}>Add File</li>
+        <li data-test-item-id="create-file" on:click={(event) => handleAddChild(FSItemType.FILE)}>Add File</li>
         <li on:click={(event) => handleAddChild(FSItemType.DIRECTORY)}>Add Directory</li>
 
     {/if}
-        <li on:click={handleRename}>Rename</li>
+        <li data-test-item-id="rename-item" on:click={handleRename}>Rename</li>
         <li on:click={handleRemove}>Remove</li>
     </ul>
 </div>
