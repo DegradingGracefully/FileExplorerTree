@@ -18,7 +18,16 @@ const config = {
 			// TODO : find a way for SvelteKit to access cypress/fixtures folder, to share the fixtures
 			// must be a SvelteKit or a Vite configuration option somewhere ...?
 			// I will createa an issue on SvelteKit GitHub as I found mention of this kind of configuration in the docs
-		}
+		},
+
+		// hack for working with pouchdb
+		// found @ https://github.com/pouchdb/pouchdb/issues/8286
+		/*vite: {
+			define: {
+				global: 'window',
+				process: { env: {} }
+			}
+		}*/
 	}
 };
 

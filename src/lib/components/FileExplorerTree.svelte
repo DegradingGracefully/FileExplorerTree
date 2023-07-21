@@ -17,10 +17,11 @@
     import type { FSItem } from "$lib/models/FSItem";
     import { onMount } from "svelte";
     import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
+    import { FSItemRepository } from "$lib/api/FSItemRepository";
         
     let searchQuery = "";
 
-    onMount(() => {
+ /*   onMount(() => {
         // HACK: originally, the cypress line cy.get('[data-test="renameButton"]').click(); didn't work.
         // I end up understanding that it was a kind of "race" condition:
         // indeed the on:click handler wasn't yet positioned on the "renameButton" DOM element
@@ -31,7 +32,9 @@
         (document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";
 
         FSItemAPI.setRootItem(mockRootItem);
-    });
+console.log("?????");
+        FSItemRepository.init();
+    });*/
         
     function renameHandler(event: CustomEvent<FSItem>) {
         // refactor this function to accept the item id instead of the item object

@@ -22,6 +22,8 @@
 	"type": "module",
 	"dependencies": {
 		"dexie": "^3.2.3",
+		"pouchdb": "^8.0.1",
+		"pouchdb-browser": "^8.0.1",
 		"svelte-migrate": "^1.2.4",
 		"tslog": "^4.8.2"
 	}
