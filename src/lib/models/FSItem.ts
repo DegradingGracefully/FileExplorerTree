@@ -38,7 +38,7 @@ export abstract class FSItem {
     public abstract setChildren(children: FSItem[]): void;
 
     public toString(): string {
-        return this.stringify();
+        return "tostring:" + this.stringify();
     }
 
     /**

@@ -14,14 +14,14 @@
         fsItemStore,
     } from "$lib/api/FSItemAPI";
     import TreeView from "$lib/components/TreeView.svelte";
-    import type { FSItem } from "$lib/models/FSItem";
+    import type { DirectoryItem, FSItem } from "$lib/models/FSItem";
     import { onMount } from "svelte";
-    import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
+    //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
     import { FSItemRepository } from "$lib/api/FSItemRepository";
         
     let searchQuery = "";
 
- /*   onMount(() => {
+    onMount(() => {
         // HACK: originally, the cypress line cy.get('[data-test="renameButton"]').click(); didn't work.
         // I end up understanding that it was a kind of "race" condition:
         // indeed the on:click handler wasn't yet positioned on the "renameButton" DOM element
@@ -31,10 +31,16 @@
         // to signal that Svelte has finished mounting the component
         (document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";
 
-        FSItemAPI.setRootItem(mockRootItem);
-console.log("?????");
+        //FSItemAPI.setRootItem(mockRootItem);
+
+//console.log(mockRootItem.toString());
         FSItemRepository.init();
-    });*/
+       
+        FSItemRepository.loadRootFSItem().then((root: DirectoryItem) => {
+            // console.log(root);
+            FSItemAPI.setRootItem(root);
+        });        
+    });
         
     function renameHandler(event: CustomEvent<FSItem>) {
         // refactor this function to accept the item id instead of the item object
