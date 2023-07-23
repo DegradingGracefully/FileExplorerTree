@@ -106,6 +106,22 @@ export abstract class FSItem {
     public abstract findById(id: number): FSItem | null;
 
     public abstract findByName(name: string): Array<FSItem>;
+
+    public getNextAvailableId(): number {
+        const allIds: number[] = [];
+        
+        function collectIds(item: FSItem) {
+            allIds.push(item.id);
+            if (item.isDirectory() && item.getChildren()) {
+                item.getChildren()!.forEach(collectIds);
+            }
+        }
+        
+        collectIds(this);
+        
+        const maxId = Math.max(...allIds);
+        return maxId + 1;
+    }
 }
 
 /**

@@ -18,35 +18,47 @@
     import { onMount } from "svelte";
     //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
     import { FSItemRepository } from "$lib/api/FSItemRepository";
+    import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
         
     let searchQuery = "";
 
     onMount(() => {
-        // HACK: originally, the cypress line cy.get('[data-test="renameButton"]').click(); didn't work.
-        // I end up understanding that it was a kind of "race" condition:
-        // indeed the on:click handler wasn't yet positioned on the "renameButton" DOM element
-        // at the time cypress was clicking it (in Svelte terminology, the DOM was not yet "hydrated")
-
-        // SO, I had to add this global attribute to this Svelte page, that is set to the value "OK" 
-        // to signal that Svelte has finished mounting the component
-        (document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";
+        // First we load the root item from the db ...
 
         //FSItemAPI.setRootItem(mockRootItem);
+        //console.log(mockRootItem.toString());
 
-//console.log(mockRootItem.toString());
         FSItemRepository.init();
        
         FSItemRepository.loadRootFSItem().then((root: DirectoryItem) => {
-            // console.log(root);
+            console.log("root"+root);
             FSItemAPI.setRootItem(root);
-        });        
+        
+            // .. then we set the "flag" that indicates that everything is ready
+            //  // HACK: originally, the cypress line cy.get('[data-test="renameButton"]').click(); didn't work.
+            // I ended up understanding that it was a kind of "race" condition:
+            // indeed the on:click handler wasn't yet positioned on the "renameButton" DOM element
+            // at the time cypress was clicking it (in Svelte terminology, the DOM was not yet "hydrated")
+
+            // SO, I had to add this global attribute to this Svelte page, that is set to the value "OK" 
+            // to signal that Svelte has finished mounting the component            
+            (document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";           
+        });
+
+        //(document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";
+        // ...I moved the "OK" flag into the then case see above
     });
         
+    /**
+     * TODO: code smell ? the event handler below exists only to be able to trigger the update of the store
+     * and thus trigger the update to the database.
+     * @param event
+     */
     function renameHandler(event: CustomEvent<FSItem>) {
-        // refactor this function to accept the item id instead of the item object
-        console.log(typeof event.detail + " item" + event.detail);
-        const item: FSItem = event.detail;
-        item.updateItem(item); // TODO: code smell ? weird call
+        //console.log(typeof event.detail + " item" + event.detail);
+        //const item: FSItem = event.detail;
+        //item.updateItem(item); // TODO: code smell ? weird call        
+        FSItemAPI.forceRefreshStore();
         FSItemAPI.printRootItem();
     }
 
@@ -66,10 +78,14 @@
     }
 
     function addHandler(event: CustomEvent) {
-        console.log("parent item=" + event.detail.parentItem);
-        console.log("child item=" + event.detail.childItem);
+        //console.log("parent item=" + event.detail.parentItem);
+        //console.log("child item=" + event.detail.childItem);
         const parentItem: FSItem = event.detail.parentItem;
         const childItem: FSItem = event.detail.childItem;
+        childItem.id = $fsItemStore?.getNextAvailableId();
+        console.log("Creating child item:");
+        console.log(childItem);
+
         parentItem.add(childItem);
         FSItemAPI.forceRefreshStore();
         FSItemAPI.printRootItem();

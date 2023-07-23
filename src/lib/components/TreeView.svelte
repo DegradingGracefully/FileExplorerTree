@@ -56,6 +56,7 @@
     if (newName) {
       item.name = newName;
     }
+    dispatch("rename");
   }
 
   function remove(): void {

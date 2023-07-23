@@ -9,7 +9,3 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 src/tmp
-# ignore cypress folder for now
-**/cypress
-# ignore cypress config for now
-**/cypress.config*

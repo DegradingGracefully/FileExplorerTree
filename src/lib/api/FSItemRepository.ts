@@ -6,6 +6,14 @@ const ID_ROOT_ITEM: string = "-1";
 
 const MOCK_ROOT_ITEM: DirectoryItem = new DirectoryItem(ID_ROOT_ITEM, "D", "rootDirectory");
 
+/**
+ * TODO: I had a doubt about storing the whole original Typescript FSItem class. That's why I went through
+ * the additional step of using a DTO class . However, Dexie provides an helper method apparently, Table.mapToClass(),
+ * which was created for the purpose of working with real classes ?
+ * 
+ * "But you could also work with real classes so that the objects retrieved from the database will be actual instances of the class you have defined in typescript. This is simply accomplished by using Table.mapToClass()."
+ * https://dexie.org/docs/Typescript
+ */
 class FSItemDTO {
   constructor(
     public id: string,
