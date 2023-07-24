@@ -44,7 +44,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #d9f2d4; /* Lighter green */
+    background-color: #77c2d4; /* Lighter green */
   }
 
   /* Style for the textarea */
