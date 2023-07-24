@@ -50,7 +50,7 @@
 
     {/if}
         <li data-test-item-id="rename-item" on:click={handleRename}>Rename</li>
-        <li on:click={handleRemove}>Remove</li>
+        <li data-test-item-id="remove-item" on:click={handleRemove}>Remove</li>
     </ul>
 </div>
 
