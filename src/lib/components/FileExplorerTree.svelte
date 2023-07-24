@@ -15,11 +15,28 @@
     } from "$lib/api/FSItemAPI";
     import TreeView from "$lib/components/TreeView.svelte";
     import type { DirectoryItem, FSItem } from "$lib/models/FSItem";
-    import { onMount } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
     //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
     import { FSItemRepository } from "$lib/api/FSItemRepository";
     //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
         
+    export let textContent: string = "";
+
+    const dispatch = createEventDispatcher();
+
+    let selectedFSItem: FSItem = undefined;
+
+    const textContentStore = writable(textContent);
+    $: {
+        textContentStore.set(textContent);
+    }
+
+    textContentStore.subscribe((textContentUpdated: string) => {
+        if (selectedFSItem) {
+            selectedFSItem.text = textContentUpdated;
+        }
+    });
+
     let searchQuery = "";
 
     onMount(() => {
@@ -48,7 +65,21 @@
         //(document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";
         // ...I moved the "OK" flag into the then case see above
     });
-        
+    
+    // No: don't need to catch this event ? let it bubble up to the page.svelte ?
+    /*function selectedFSItemChangedHandler(event) {
+
+    }*/
+
+    function selectedFSItemChangedHandler(event) {
+        const newSelectedItem: FSItem = event.detail;
+        //console.log("selected item changed. New selected item:");
+        //console.log(newSelectedItem);
+        selectedFSItem = newSelectedItem;
+        textContent = selectedFSItem.text;
+        dispatch("selectedFSItemChanged", selectedFSItem);
+    }
+
     /**
      * TODO: code smell ? the event handler below exists only to be able to trigger the update of the store
      * and thus trigger the update to the database.
@@ -151,6 +182,7 @@
     {#if $fsItemStore}
         <TreeView
             item={$fsItemStore}
+            on:selectedFSItemChanged={selectedFSItemChangedHandler}
             on:rename={renameHandler}
             on:remove={removeHandler}
             on:addChild={addHandler}

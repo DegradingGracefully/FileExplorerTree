@@ -23,7 +23,7 @@ export abstract class FSItem {
     public isVisible: boolean = true; // needed to hold the visible / not visible status
     public isExpanded: boolean = false; // needed to hold the expanded / not expanded status
 
-    constructor(public id: number, public type: 'D' | 'F', public name: string) { }
+    constructor(public id: number, public type: 'D' | 'F', public name: string, public text: string = "") { }
     
     public setParent(parent: FSItem | null) {
         this.parent = parent;

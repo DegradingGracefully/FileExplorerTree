@@ -53,6 +53,11 @@
     showContextMenu = false;
   }
 
+  function handleSelectedFSItemChanged(event) {
+    console.log("handleSelectedFSItemChanged");
+    dispatch("selectedFSItemChanged", item);
+  }
+
   function rename(): void {
     const newName = prompt("Enter a new name:", item.name);
     if (newName) {
@@ -104,6 +109,7 @@
         class="tree-item-name"
         data-test-item-id={item.id}
         on:contextmenu={(event) => showContextMenuHandler(event, item)}
+        on:click={handleSelectedFSItemChanged}
       >
         {item.name}
       </div>
@@ -112,7 +118,7 @@
     {#if isDirectory && item.isExpanded && item.getChildren()}
       <div class="tree-item-children">
         {#each item.getChildren() as child (child.id)}
-          <svelte:self item={child} on:addChild on:rename on:remove />
+          <svelte:self item={child} on:selectedFSItemChanged on:addChild on:rename on:remove />
         {/each}
       </div>
     {/if}
@@ -141,6 +147,18 @@
     align-items: center;
   }
 
+  .tree-item-name {
+    font-weight: bold;
+    margin-left: 5px; /* Adjust as needed */
+    cursor: pointer;
+  }
+
+  .tree-item-children {
+    margin-left: 20px;
+    border-left: 1px dashed #ccc;
+    padding-left: 10px;
+  }
+
   .toggle-button-space {
     display: flex;
     align-items: center;
@@ -153,16 +171,5 @@
     color: #777;
     font-size: 14px;
     cursor: pointer;
-  }
-
-  .tree-item-name {
-    font-weight: bold;
-    margin-left: 5px; /* Adjust as needed */
-  }
-
-  .tree-item-children {
-    margin-left: 20px;
-    border-left: 1px dashed #ccc;
-    padding-left: 10px;
   }
 </style>
