@@ -65,7 +65,7 @@ function getCurrentFileName() {
     .left-pane {
       flex: 1;
       max-width: 300px;
-      background-color: #e0f2e9; /* Light green */
+      background-color: #d1f5d3; /* Pale green */
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 20px;
@@ -92,8 +92,7 @@ function getCurrentFileName() {
   </style>
   
   <main>
-    <div class="left-pane">
-      <h1>File Explorer</h1>
+    <div class="left-pane">      
       <FileExplorerTree bind:textContent on:selectedFSItemChanged={selectedFSItemChangedHandler} />
     </div>
   

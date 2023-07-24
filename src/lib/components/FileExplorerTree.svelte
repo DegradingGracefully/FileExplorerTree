@@ -166,7 +166,7 @@
 </script>
 
 <div class="container">
-    <h1>File System Explorer</h1>
+    <h1>File Explorer</h1>
 
     <!-- The search input field -->
     <input
