@@ -43,53 +43,60 @@
     function mainDebugButton() {
         //FSItemAPI.add();
     }
+// Function to display the name of the currently edited file
+function getCurrentFileName() {
+    return selectedFSItem && selectedFSItem.type === FSItemType.FILE
+      ? selectedFSItem.name
+      : "No file selected";
+  }
 </script>
-
-<input
-    type="text"
-    id="data-test-cypress-wait-for-svelte-hydratation"
-    style="display: none"
-    value=""
-    autocomplete="off"
-/>
-
-<center>
-    <input
-        type="button"
-        value="Big Global Debug Button!"
-        style="top: 0px ; width: 300px; padding: 10px; margin-bottom: 50px;
-        font-family: calibri,'Font Awesome 5 Free';
-        font-size:20px;"
-        on:click={mainDebugButton}
-    /><br />
-</center>
-
-<main>
-    {#if selectedFSItem && selectedFSItem.type === FSItemType.FILE}
-        <h1>Currently editing file {selectedFSItem.name}</h1>
-    {/if}
-    <div class="left-pane">
-        <h1>File Explorer</h1>
-        <FileExplorerTree bind:textContent on:selectedFSItemChanged={selectedFSItemChangedHandler}/>
-    </div>
-
-    <div class="right-pane">
-        <h1>Text Editor</h1>
-        <TextEditor />
-    </div>
-</main>
 
 <style>
     /* Styling for the main page layout */
     main {
-        display: flex;
-        height: 100vh;
-        gap: 20px;
-        padding: 20px;
+      display: flex;
+      height: 100vh;
+      padding: 20px;
+      background-color: #f1f1f1;
     }
-
+  
     .left-pane,
     .right-pane {
-        flex: 1;
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      overflow: auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-</style>
+  
+    .left-pane {
+      max-width: 300px;
+    }
+  
+    .right-pane {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    /* Styling for the currently edited file name */
+    .file-name {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  </style>
+  
+  <main>
+    <div class="left-pane">
+      <h1>File Explorer</h1>
+      <FileExplorerTree bind:textContent on:selectedFSItemChanged={selectedFSItemChangedHandler} />
+    </div>
+  
+    <div class="right-pane">
+      <h1>Text Editor</h1>
+      <div class="file-name">Currently editing file: {getCurrentFileName()}</div>
+      <TextEditor />
+    </div>
+  </main>
