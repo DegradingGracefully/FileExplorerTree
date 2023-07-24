@@ -26,7 +26,6 @@
 
 <div class="text-editor">
     <textarea
-      class="text-area"
       value={$textContentStore}
       placeholder="Start writing here..."
       on:input={textInputHandler}
@@ -43,15 +42,15 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      background-color: #f9f9f9;
-      border-radius: 5px;
+      border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: #f9f9f9;
     }
   
     /* Style for the textarea */
-    .text-area {
+    .text-editor textarea {
       width: 100%;
-      height: 90%;
+      height: 100%;
       resize: none;
       padding: 10px;
       font-size: 16px;
@@ -62,7 +61,7 @@
       transition: border-color 0.3s ease;
     }
   
-    .text-area:focus {
+    .text-editor textarea:focus {
       outline: none;
       border-color: #4e8cff;
     }

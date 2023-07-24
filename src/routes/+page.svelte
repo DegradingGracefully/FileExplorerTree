@@ -56,47 +56,37 @@ function getCurrentFileName() {
     main {
       display: flex;
       height: 100vh;
+      gap: 20px;
       padding: 20px;
-      background-color: #f1f1f1;
+      background-color: #f9f9f9;
+      font-family: "Arial", sans-serif;
     }
   
     .left-pane {
       flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      overflow: auto;
       background-color: #fff;
-      border-radius: 5px;
+      border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-  
-    .left-pane h1 {
-      margin-bottom: 10px;
-      color: #444;
+      padding: 20px;
     }
   
     .right-pane {
       flex: 2;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 10px;
-      border: 1px solid #ccc;
       background-color: #fff;
-      border-radius: 5px;
+      border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-  
-    .right-pane h1 {
-      margin-bottom: 20px;
-      color: #444;
+      padding: 20px;
     }
   
     /* Styling for the currently edited file name */
     .file-name {
       font-size: 18px;
+      font-weight: bold;
+      color: #333;
       margin-bottom: 10px;
-      color: #666;
+      text-align: center;
     }
   </style>
   
@@ -107,8 +97,9 @@ function getCurrentFileName() {
     </div>
   
     <div class="right-pane">
-      <h1>Text Editor</h1>
-      <div class="file-name">Currently editing file: {getCurrentFileName()}</div>
+      {#if selectedFSItem && selectedFSItem.type === FSItemType.FILE}
+        <div class="file-name">Currently editing: {selectedFSItem.name}</div>
+      {/if}
       <TextEditor />
     </div>
   </main>
