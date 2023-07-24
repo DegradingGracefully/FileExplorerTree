@@ -1,14 +1,18 @@
 <script lang="ts">
     import FileExplorerTree from "$lib/components/FileExplorerTree.svelte";
 
-    function mainDebugButton() {   
+    function mainDebugButton() {
         //FSItemAPI.add();
     }
-  
-
 </script>
 
-<input type="text" id="data-test-cypress-wait-for-svelte-hydratation" style="display: none" value="" autocomplete="off" />
+<input
+    type="text"
+    id="data-test-cypress-wait-for-svelte-hydratation"
+    style="display: none"
+    value=""
+    autocomplete="off"
+/>
 
 <center>
     <input
