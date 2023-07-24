@@ -8,10 +8,10 @@
   import { idOfItemThatHasOpenedMenu } from "$lib/components/FileExplorerTree.svelte";
   import { createEventDispatcher, onMount } from "svelte";
 
-  import ContextMenu from '$lib/components/ContextMenu.svelte';
+  import ContextMenu from "$lib/components/ContextMenu.svelte";
 
   export let item: FSItem;
-  
+
   const isDirectory: boolean = item.type === "D";
   let expanded: boolean = false;
   const dispatch = createEventDispatcher();
@@ -21,14 +21,16 @@
   let showContextMenu = false;
 
   onMount(() => {
-    idOfItemThatHasOpenedMenu.subscribe((idOfItemThatHasOpenedMenu: number | null) => {
-      //console.log("idOfItemThatHasOpenedMenu from store has changed value. New id=" + idOfItemThatHasOpenedMenu);
-      //console.log(item.id);
+    idOfItemThatHasOpenedMenu.subscribe(
+      (idOfItemThatHasOpenedMenu: number | null) => {
+        //console.log("idOfItemThatHasOpenedMenu from store has changed value. New id=" + idOfItemThatHasOpenedMenu);
+        //console.log(item.id);
 
-      if (showContextMenu && idOfItemThatHasOpenedMenu !== item.id) {
-        hideContextMenu();
+        if (showContextMenu && idOfItemThatHasOpenedMenu !== item.id) {
+          hideContextMenu();
+        }
       }
-    });
+    );
   });
 
   function toggleExpanded(): void {
@@ -36,8 +38,8 @@
   }
 
   function showContextMenuHandler(event: MouseEvent, item: FSItem): void {
-    if (!showContextMenu) {    
-    // checks that another menu is not already open. Only one menu for one item open at all time
+    if (!showContextMenu) {
+      // checks that another menu is not already open. Only one menu for one item open at all time
       event.preventDefault();
       contextMenuX = event.clientX;
       contextMenuY = event.clientY;
@@ -68,7 +70,9 @@
 
   function addChild(event: CustomEvent<FSItemType>): void {
     const fsItemTypeToCreate = event.detail;
-    const childName = prompt(`Enter the name for the new ${fsItemTypeToCreate}:`);
+    const childName = prompt(
+      `Enter the name for the new ${fsItemTypeToCreate}:`
+    );
     let child: FSItem;
 
     if (childName) {
@@ -83,7 +87,7 @@
   }
 </script>
 
-{#if item.isVisible }
+{#if item.isVisible}
   <div class="tree-item">
     <div class="tree-item-header">
       <div class="toggle-button-space">
@@ -95,8 +99,14 @@
           <div class="toggle-button" />
         {/if}
       </div>
-    
-      <div class="tree-item-name" data-test-item-id="{item.id}" on:contextmenu={(event) => showContextMenuHandler(event, item)} >{item.name}</div>
+
+      <div
+        class="tree-item-name"
+        data-test-item-id={item.id}
+        on:contextmenu={(event) => showContextMenuHandler(event, item)}
+      >
+        {item.name}
+      </div>
     </div>
 
     {#if isDirectory && item.isExpanded && item.getChildren()}
