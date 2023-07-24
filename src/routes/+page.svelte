@@ -58,13 +58,14 @@ function getCurrentFileName() {
       height: 100vh;
       gap: 20px;
       padding: 20px;
-      background-color: #f9f9f9;
+      background-color: #f1f1f1;
       font-family: "Arial", sans-serif;
     }
   
     .left-pane {
       flex: 1;
-      background-color: #fff;
+      max-width: 300px;
+      background-color: #e0f2e9; /* Light green */
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 20px;
@@ -84,7 +85,7 @@ function getCurrentFileName() {
     .file-name {
       font-size: 18px;
       font-weight: bold;
-      color: #333;
+      color: #185c39; /* Dark green */
       margin-bottom: 10px;
       text-align: center;
     }
@@ -98,7 +99,7 @@ function getCurrentFileName() {
   
     <div class="right-pane">
       {#if selectedFSItem && selectedFSItem.type === FSItemType.FILE}
-        <div class="file-name">Currently editing: {selectedFSItem.name}</div>
+        <div class="file-name">Currently editing file: {selectedFSItem.name}</div>
       {/if}
       <TextEditor />
     </div>

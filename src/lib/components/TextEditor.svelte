@@ -25,44 +25,44 @@
 </script>
 
 <div class="text-editor">
-    <textarea
-      value={$textContentStore}
-      placeholder="Start writing here..."
-      on:input={textInputHandler}
-    />
-  </div>
-  
-  <style>
-    /* ... existing styles ... */
-  
-    .text-editor {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      background-color: #f9f9f9;
-    }
-  
-    /* Style for the textarea */
-    .text-editor textarea {
-      width: 100%;
-      height: 100%;
-      resize: none;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: border-color 0.3s ease;
-    }
-  
-    .text-editor textarea:focus {
-      outline: none;
-      border-color: #4e8cff;
-    }
-  </style>
+  <textarea
+    value={$textContentStore}
+    placeholder="Start writing here..."
+    on:input={textInputHandler}
+  />
+</div>
+
+<style>
+  /* ... existing styles ... */
+
+  .text-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #d9f2d4; /* Lighter green */
+  }
+
+  /* Style for the textarea */
+  .text-editor textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+  }
+
+  .text-editor textarea:focus {
+    outline: none;
+    border-color: #4e8cff;
+  }
+</style>
