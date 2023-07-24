@@ -60,8 +60,7 @@ function getCurrentFileName() {
       background-color: #f1f1f1;
     }
   
-    .left-pane,
-    .right-pane {
+    .left-pane {
       flex: 1;
       padding: 10px;
       border: 1px solid #ccc;
@@ -71,20 +70,33 @@ function getCurrentFileName() {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
   
-    .left-pane {
-      max-width: 300px;
+    .left-pane h1 {
+      margin-bottom: 10px;
+      color: #444;
     }
   
     .right-pane {
+      flex: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    .right-pane h1 {
+      margin-bottom: 20px;
+      color: #444;
     }
   
     /* Styling for the currently edited file name */
     .file-name {
       font-size: 18px;
       margin-bottom: 10px;
+      color: #666;
     }
   </style>
   

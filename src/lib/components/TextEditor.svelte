@@ -26,37 +26,44 @@
 
 <div class="text-editor">
     <textarea
-        class="text-area"
-        value={$textContentStore}
-        placeholder="Start writing here..."
-        on:input={textInputHandler}
+      class="text-area"
+      value={$textContentStore}
+      placeholder="Start writing here..."
+      on:input={textInputHandler}
     />
-</div>
-
-<style>
-    /* ... existing styles ... */ .text-editor {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  /* Style for the textarea */
-  .text-area {
-    width: 100%;
-    flex: 1;
-    resize: none;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease;
-  }
-
-  .text-area:focus {
-    outline: none;
-    border-color: #4e8cff;
-  }
-</style>
+  </div>
+  
+  <style>
+    /* ... existing styles ... */
+  
+    .text-editor {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Style for the textarea */
+    .text-area {
+      width: 100%;
+      height: 90%;
+      resize: none;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease;
+    }
+  
+    .text-area:focus {
+      outline: none;
+      border-color: #4e8cff;
+    }
+  </style>
