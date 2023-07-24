@@ -18,7 +18,7 @@
     import { onMount } from "svelte";
     //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
     import { FSItemRepository } from "$lib/api/FSItemRepository";
-    import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
+    //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
         
     let searchQuery = "";
 
