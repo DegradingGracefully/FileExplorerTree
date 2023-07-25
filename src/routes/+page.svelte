@@ -74,7 +74,6 @@
     gap: 20px;
     padding: 20px;
     background-color: #f9f9f9; /* Light gray */
-    font-family: "Arial", sans-serif;
   }
 
   .left-pane {
