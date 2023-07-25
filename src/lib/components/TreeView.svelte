@@ -53,9 +53,14 @@
     showContextMenu = false;
   }
 
-  function handleSelectedFSItemChanged(event) {
-    console.log("handleSelectedFSItemChanged");
-    dispatch("selectedFSItemChanged", item);
+  function leftClickHandler(event) {
+    console.log("leftClickHandler");
+
+    if (item.type === FSItemType.DIRECTORY) {
+      toggleExpanded();
+    } else if (item.type === FSItemType.FILE) {
+      dispatch("selectedFSItemChanged", item);
+    }
   }
 
   function rename(): void {
@@ -109,7 +114,7 @@
         class="tree-item-name"
         data-test-item-id={item.id}
         on:contextmenu={(event) => showContextMenuHandler(event, item)}
-        on:click={handleSelectedFSItemChanged}
+        on:click={leftClickHandler}
       >
         {item.name}
       </div>
@@ -118,7 +123,13 @@
     {#if isDirectory && item.isExpanded && item.getChildren()}
       <div class="tree-item-children">
         {#each item.getChildren() as child (child.id)}
-          <svelte:self item={child} on:selectedFSItemChanged on:addChild on:rename on:remove />
+          <svelte:self
+            item={child}
+            on:selectedFSItemChanged
+            on:addChild
+            on:rename
+            on:remove
+          />
         {/each}
       </div>
     {/if}

@@ -1,27 +1,27 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { getContext } from "svelte";
+  import { onMount } from "svelte";
+  import { getContext } from "svelte";
 
-    // Get the textContentStore from context
-    const textContentStore = getContext("textContentStore");
+  // Get the textContentStore from context
+  const textContentStore = getContext("textContentStore");
 
-    // useless ? let textContent = "";
+  // useless ? let textContent = "";
 
-    // Subscribe to changes in the textContentStore and update the textContent
-    // ? $ textContentStore: textContent = $textContentStore;
+  // Subscribe to changes in the textContentStore and update the textContent
+  // ? $ textContentStore: textContent = $textContentStore;
 
-    // Perform updates through the textContentStore
-    onMount(() => {
-        // ? what is that ? $textContentStore = textContent;
-    });
+  // Perform updates through the textContentStore
+  onMount(() => {
+    // ? what is that ? $textContentStore = textContent;
+  });
 
-    // Handle changes in the textContent and update the textContentStore
-    function textInputHandler(event) {
-        const textInput: string = event.target.value;
-        console.log("text input. Input:");
-        console.log(textInput);
-        $textContentStore = textInput;
-    }
+  // Handle changes in the textContent and update the textContentStore
+  function textInputHandler(event) {
+    const textInput: string = event.target.value;
+    console.log("text input. Input:");
+    console.log(textInput);
+    $textContentStore = textInput;
+  }
 </script>
 
 <div class="text-editor">
@@ -33,8 +33,6 @@
 </div>
 
 <style>
-  /* ... existing styles ... */
-
   .text-editor {
     flex: 1;
     display: flex;
@@ -44,10 +42,8 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #77c2d4; /* Lighter green */
+    background-color: #f2f2f2; /* Off-white */
   }
-
-  /* Style for the textarea */
   .text-editor textarea {
     width: 100%;
     height: 100%;
@@ -56,13 +52,13 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #fff; /* White */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease;
   }
 
   .text-editor textarea:focus {
     outline: none;
-    border-color: #4e8cff;
+    border-color: #4e8cff; /* Light blue */
   }
 </style>

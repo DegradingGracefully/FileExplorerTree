@@ -3,7 +3,7 @@
     import { createEventDispatcher, onDestroy, onMount } from "svelte";
 
     export let x: number;
-    export let y: number;    
+    export let y: number;
 
     export let fsItemType: FSItemType;
 
@@ -23,7 +23,7 @@
         dispatch("close");
     }
 
-    function handleClickOutside(event: MouseEvent): void {        
+    function handleClickOutside(event: MouseEvent): void {
         if (
             event.target instanceof HTMLElement &&
             !event.target.closest(".context-menu")
@@ -45,10 +45,16 @@
 <div class="context-menu" style="left: {x}px; top: {y}px;">
     <ul>
         {#if fsItemType === FSItemType.DIRECTORY}
-        <li data-test-item-id="create-file" on:click={(event) => handleAddChild(FSItemType.FILE)}>Add File</li>
-        <li on:click={(event) => handleAddChild(FSItemType.DIRECTORY)}>Add Directory</li>
-
-    {/if}
+            <li
+                data-test-item-id="create-file"
+                on:click={(event) => handleAddChild(FSItemType.FILE)}
+            >
+                Add File
+            </li>
+            <li on:click={(event) => handleAddChild(FSItemType.DIRECTORY)}>
+                Add Directory
+            </li>
+        {/if}
         <li data-test-item-id="rename-item" on:click={handleRename}>Rename</li>
         <li data-test-item-id="remove-item" on:click={handleRemove}>Remove</li>
     </ul>
@@ -71,7 +77,7 @@
     .context-menu ul {
         margin: 0;
         padding: 0;
-        list-style-type:none; /** no bullet */
+        list-style-type: none; /** no bullet */
     }
 
     .context-menu li {

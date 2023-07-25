@@ -62,40 +62,38 @@
   <div class="right-pane">
     {#if selectedFSItem && selectedFSItem.type === FSItemType.FILE}
       <div class="file-name">Currently editing file: {selectedFSItem.name}</div>
+    {:else}
+      <div class="file-name">Please select a file in the left panel to start writing.</div>
     {/if}
     <TextEditor />
   </div>
 </main>
 
 <style>
-  /* Styling for the main page layout */
   main {
     display: flex;
     height: 100vh;
     gap: 20px;
     padding: 20px;
-    background-color: #f1f1f1;
-    font-family: "Roboto", sans-serif;
+    background-color: #f9f9f9; /* Light gray */
   }
 
   .left-pane {
     flex: 1;
     max-width: 300px;
-    background-color: #2196f3; /* Material UI primary color */
+    background-color: #f2f2f2; /* Off-white */
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    display: flex;
-    flex-direction: column;
   }
 
   .right-pane {
     flex: 2;
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: #fff; /* White */
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
 
@@ -103,7 +101,7 @@
   .file-name {
     font-size: 18px;
     font-weight: bold;
-    color: #757575; /* Material UI secondary text color */
+    color: #185c39; /* Dark green */
     margin-bottom: 10px;
     text-align: center;
   }
