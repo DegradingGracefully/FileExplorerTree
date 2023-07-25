@@ -1,38 +1,17 @@
-# create-svelte
+This repository includes the FileExplorerTree component for SvelteKit. It emulates a (really bare) text file system within the browser environment. Data is persisted in the IndexedDB of the browser through the Dexie js API.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+It also includes a showcase that integrates FileExplorerTree inside a text editor app:
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Motivation
+The reason I started this project is that I needed a way to store "pseudo text files" in my browser for another app. That is impossible technically for security reasons.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### State
+There is working code and one cypress test spec for one scenario.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+But please note that it this codebase is not perfect. For example, performance is not optimal, as I commit the whole filesystem on every change, and search is done through the code not through db. Also the architecture of the flow of data inside the SvelteKit app should be improved.
 
-## Developing
+So, if you choose to use this code you can, maybe as a starting point for your own project that needs a file explorer. But I won't be able to offer support.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+The reason I've set up this GitHub account is just for showcasing some of my work to potential employers.
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
