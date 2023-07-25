@@ -118,7 +118,13 @@
     {#if isDirectory && item.isExpanded && item.getChildren()}
       <div class="tree-item-children">
         {#each item.getChildren() as child (child.id)}
-          <svelte:self item={child} on:selectedFSItemChanged on:addChild on:rename on:remove />
+          <svelte:self
+            item={child}
+            on:selectedFSItemChanged
+            on:addChild
+            on:rename
+            on:remove
+          />
         {/each}
       </div>
     {/if}

@@ -94,7 +94,7 @@ export class FSItemRepository {
         } else {
           console.log("FSItemRepository.loadRootFSItem : no db yet. Initializing with root item:");
           console.log(MOCK_ROOT_ITEM);
-          rootFSItem = MOCK_ROOT_ITEM;          
+          rootFSItem = MOCK_ROOT_ITEM;
         }
 
         return rootFSItem;

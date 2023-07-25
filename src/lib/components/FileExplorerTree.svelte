@@ -9,17 +9,14 @@
 </script>
 
 <script lang="ts">
-    import {
-        FSItemAPI,
-        fsItemStore,
-    } from "$lib/api/FSItemAPI";
+    import { FSItemAPI, fsItemStore } from "$lib/api/FSItemAPI";
     import TreeView from "$lib/components/TreeView.svelte";
     import type { DirectoryItem, FSItem } from "$lib/models/FSItem";
     import { createEventDispatcher, onMount } from "svelte";
     //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
     import { FSItemRepository } from "$lib/api/FSItemRepository";
     //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
-        
+
     export let textContent: string = "";
 
     const dispatch = createEventDispatcher();
@@ -46,26 +43,30 @@
         //console.log(mockRootItem.toString());
 
         FSItemRepository.init();
-       
+
         FSItemRepository.loadRootFSItem().then((root: DirectoryItem) => {
-            console.log("root"+root);
+            console.log("root" + root);
             FSItemAPI.setRootItem(root);
-        
+
             // .. then we set the "flag" that indicates that everything is ready
             //  // HACK: originally, the cypress line cy.get('[data-test="renameButton"]').click(); didn't work.
             // I ended up understanding that it was a kind of "race" condition:
             // indeed the on:click handler wasn't yet positioned on the "renameButton" DOM element
             // at the time cypress was clicking it (in Svelte terminology, the DOM was not yet "hydrated")
 
-            // SO, I had to add this global attribute to this Svelte page, that is set to the value "OK" 
-            // to signal that Svelte has finished mounting the component            
-            (document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";           
+            // SO, I had to add this global attribute to this Svelte page, that is set to the value "OK"
+            // to signal that Svelte has finished mounting the component
+            (
+                document.getElementById(
+                    "data-test-cypress-wait-for-svelte-hydratation"
+                ) as HTMLInputElement
+            ).value = "OK";
         });
 
         //(document.getElementById("data-test-cypress-wait-for-svelte-hydratation") as HTMLInputElement).value = "OK";
         // ...I moved the "OK" flag into the then case see above
     });
-    
+
     // No: don't need to catch this event ? let it bubble up to the page.svelte ?
     /*function selectedFSItemChangedHandler(event) {
 
@@ -88,7 +89,7 @@
     function renameHandler(event: CustomEvent<FSItem>) {
         //console.log(typeof event.detail + " item" + event.detail);
         //const item: FSItem = event.detail;
-        //item.updateItem(item); // TODO: code smell ? weird call        
+        //item.updateItem(item); // TODO: code smell ? weird call
         FSItemAPI.forceRefreshStore();
         FSItemAPI.printRootItem();
     }
@@ -126,14 +127,17 @@
         searchQuery = event.target.value.trim().toLowerCase();
 
         // first hide all children
-        $fsItemStore?.executeOnAllChildren((item) => item.isVisible = false);
+        $fsItemStore?.executeOnAllChildren((item) => (item.isVisible = false));
 
         // then redisplay all children whose name match, plus their parent
 
         // for that we first collect all the matching items
-        const matchingItems: Array<FSItem> = $fsItemStore?.findByName(searchQuery);
-        
-        console.log("looping with matchingItems.forEach to set the visible flag to true...");
+        const matchingItems: Array<FSItem> =
+            $fsItemStore?.findByName(searchQuery);
+
+        console.log(
+            "looping with matchingItems.forEach to set the visible flag to true..."
+        );
 
         // then we update these items isVisible flag
         matchingItems.forEach(function updateTheWholeBranch(item: FSItem) {
@@ -147,7 +151,7 @@
 
         console.log("whole root item with isVisible flags set to true:");
         console.log($fsItemStore);
-        
+
         FSItemAPI.forceRefreshStore();
     }
 
@@ -175,10 +179,12 @@
         placeholder="Search..."
         on:input={handleSearch}
     />
-    
+
     <!-- The Expand All button -->
-    <button data-test-item-id="expand-all-button" on:click={handleExpandAll}>Expand All</button>
-      ____________________________________________________________________________________________________________________________________
+    <button data-test-item-id="expand-all-button" on:click={handleExpandAll}
+        >Expand All</button
+    >
+    ____________________________________________________________________________________________________________________________________
     {#if $fsItemStore}
         <TreeView
             item={$fsItemStore}

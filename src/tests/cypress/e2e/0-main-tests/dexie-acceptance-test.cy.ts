@@ -24,14 +24,14 @@ describe("FSItemAPI", () => {
 
     // now create the new file (actually triggers the creation, which is done through the prompt stub)
     cy.get('.tree-item-name').contains('rootDirectory').rightclick().get('[data-test-item-id="create-file"]').click();
-    
+
     //cy.get('.tree-item-name').contains(NEW_FILE_NAME).should('exist');
     // NO. We don't need to test that the newly created file was added to the tree.
     // The purpose of this test case is to test the db, we're not testing the create feature here
 
     // Reload the page
     cy.reload();
-    cy.get("#data-test-cypress-wait-for-svelte-hydratation").should("have.value", "OK");  
+    cy.get("#data-test-cypress-wait-for-svelte-hydratation").should("have.value", "OK");
     cy.get('[data-test-item-id="expand-all-button"]').click(); // always expand before doing actions
 
     // Assert that the new file is still present
@@ -40,7 +40,7 @@ describe("FSItemAPI", () => {
     ///////////////////////////////////////////////
     // 2) Renaming a file
     ///////////////////////////////////////////////
-    
+
     // First we need to set up the test : we reload page and we prepare the prompt where we write the new name of the file for renaming it
     cy.visit('http://localhost:5173/', {
       // TODO: only way to use a prompt is here in cy.visit ... ?
@@ -61,9 +61,9 @@ describe("FSItemAPI", () => {
 
     // Reload the page
     cy.reload();
-    cy.get("#data-test-cypress-wait-for-svelte-hydratation").should("have.value", "OK");  
+    cy.get("#data-test-cypress-wait-for-svelte-hydratation").should("have.value", "OK");
     cy.get('[data-test-item-id="expand-all-button"]').click(); // always expand before doing actions
- 
+
     // Assert that the file is still correctly renamed
     cy.get('.tree-item-name').contains(NEW_FILE_NAME_RENAMED).should('exist');
 
@@ -76,7 +76,7 @@ describe("FSItemAPI", () => {
 
     // Reload the page
     cy.reload();
-    cy.get("#data-test-cypress-wait-for-svelte-hydratation").should("have.value", "OK");  
+    cy.get("#data-test-cypress-wait-for-svelte-hydratation").should("have.value", "OK");
     cy.get('[data-test-item-id="expand-all-button"]').click(); // always expand before doing actions
 
     // Assert that the file is still correctly gone

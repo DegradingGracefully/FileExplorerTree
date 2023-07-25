@@ -36,7 +36,7 @@ export class FSItemAPI {
     });
   }
 
-  public static printRootItem(): void { 
+  public static printRootItem(): void {
     console.log((get(fsItemStore) as FSItem).toString()); // q: why this line gives me an error?  
   }
 }
