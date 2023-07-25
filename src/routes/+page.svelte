@@ -63,7 +63,7 @@
     {#if selectedFSItem && selectedFSItem.type === FSItemType.FILE}
       <div class="file-name">Currently editing file: {selectedFSItem.name}</div>
     {:else}
-      <div class="file-name">Please select a file in the left panel to begin editing.</div>
+      <div class="file-name">Please select a file in the left panel to start writing.</div>
     {/if}
     <TextEditor />
   </div>
