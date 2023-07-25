@@ -3,28 +3,17 @@
     "compilerOptions": {
         "importsNotUsedAsValues": "error",
         "ignoreDeprecations": "5.0", // we don't want to see the warnings about 5.5 syntax for now
-		"isolatedModules": true,
-		"preserveValueImports": true,
-		"lib": [
-			// TODO: check later about esnext vs ES2020 . see Svelte tsconfig.json it uses esnext
-            // but "target": "esnext" doesn't work with cypress ? neither does ES2022 . ES2020 seems to work
-            // but does it even matter ?...
-            // https://github.com/cypress-io/cypress/issues/22077
-            // with target: "esnext" , I had a webpack parsing error ?
-            // I tried adding webpack node packages 
-            // npm install webpack @cypress/webpack-preprocessor ts-loader
-            // as per the 2 posts but apparently that wasn't the same problem:
-            // https://stackoverflow.com/questions/72729879/webpack-compilation-error-with-cypress-10-and-cucumber-in-angular
-            // https://stackoverflow.com/questions/53236968/import-project-module-in-cypress
-        
+        "isolatedModules": true,
+        "preserveValueImports": true,
+        "lib": [
             //"esnext", 
             "ES2020",
-			"DOM",
-			"DOM.Iterable"
-		],
-		"moduleResolution": "node",
-		"module": "ES2020",
-		"target": "ES2020",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        "moduleResolution": "node",
+        "module": "ES2020",
+        "target": "ES2020",
         "types": [
             "cypress",
             "node"

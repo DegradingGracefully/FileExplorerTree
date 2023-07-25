@@ -7,9 +7,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
-		// TODO: 	"inlineSourceMap": true,  // <!-- here .? advised in https://tslog.js.org/#/
-		// more broadly for this project, I must dig into how to get typescript original line numbers indeed!
-		// I don't know this topic yet
 		"sourceMap": true,
 		"strict": true
 	}

@@ -20,16 +20,7 @@ export default defineConfig({
 
   // these options are specific for e2e test
   e2e: {
-    // TODO : not needed ? baseUrl: 'http://localhost:1234',
-
-    //supportFile: 'src/tests/cypress/support/e2e.js',
     supportFile: "src/tests/cypress/support/e2e.ts",
-
-    // TODO ? "legacy pluginsFile" really needed ?
-    //  import a legacy pluginsFile that has moved under /test folder
-    /*setupNodeEvents(on, config) {
-      return require('./src/tests/cypress/plugins/index.js')(on, config)
-    },*/
 
     // wildcard pattern for all tests
     specPattern: "src/tests/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
