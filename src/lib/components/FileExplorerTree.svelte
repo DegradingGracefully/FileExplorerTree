@@ -11,7 +11,7 @@
 <script lang="ts">
     import { FSItemAPI, fsItemStore } from "$lib/api/FSItemAPI";
     import TreeView from "$lib/components/TreeView.svelte";
-    import type { DirectoryItem, FSItem } from "$lib/models/FSItem";
+    import { FSItemType, type DirectoryItem, type FSItem } from "$lib/models/FSItem";
     import { createEventDispatcher, onMount } from "svelte";
     //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
     import { FSItemRepository } from "$lib/api/FSItemRepository";
@@ -122,6 +122,13 @@
         parentItem.add(childItem);
         FSItemAPI.forceRefreshStore();
         FSItemAPI.printRootItem();
+
+        if (childItem.type === FSItemType.FILE) {
+        // the item just created is a file => we switch to editing this file immediately
+            selectedFSItem = childItem;
+            textContent = childItem.text;
+            dispatch("selectedFSItemChanged", selectedFSItem);
+        }
     }
 
     function handleSearch(event: CustomEvent<string>) {
