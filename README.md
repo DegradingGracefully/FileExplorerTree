@@ -2,6 +2,7 @@ This repository includes the FileExplorerTree component for SvelteKit. It emulat
 
 It also includes a showcase that integrates FileExplorerTree inside a text editor app:
 
+<img alt="Screencast of FileExplorerTree" src="https://github.com/DegradingGracefully/DegradingGracefully/blob/main/FileExplorerTree_screencast.gif">
 
 ### Motivation
 The reason I started this project is that I needed a way to store "pseudo text files" in my browser for another app. That is impossible technically for security reasons.
@@ -14,4 +15,3 @@ But please note that it this codebase is not perfect. For example, performance i
 So, if you choose to use this code you can, maybe as a starting point for your own project that needs a file explorer. But I won't be able to offer support.
 
 The reason I've set up this GitHub account is just for showcasing some of my work to potential employers.
-
