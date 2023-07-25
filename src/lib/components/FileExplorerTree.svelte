@@ -31,6 +31,7 @@
     textContentStore.subscribe((textContentUpdated: string) => {
         if (selectedFSItem) {
             selectedFSItem.text = textContentUpdated;
+            FSItemAPI.forceRefreshStore();
         }
     });
 

@@ -19,6 +19,7 @@ class FSItemDTO {
     public id: string,
     public type: 'D' | 'F',
     public name: string,
+    public text: string,
     public children?: FSItemDTO[] // Array of FSItemDTO to represent the children
   ) { }
 }
@@ -29,7 +30,7 @@ class FileExplorerTreeDatabase extends Dexie {
   constructor(databaseName: string) {
     super(databaseName);
     this.version(1).stores({
-      rootItems: 'id, type, name, children',
+      rootItems: 'id, type, name, text, children',
     });
   }
 }
@@ -49,15 +50,15 @@ export class FSItemRepository {
     if (children) {
       childrenDTO = children.map(child => FSItemRepository.convertToDTO(child));
     }
-    return new FSItemDTO(fsItem.id.toString(), fsItem.type, fsItem.name, childrenDTO);
+    return new FSItemDTO(fsItem.id.toString(), fsItem.type, fsItem.name, fsItem.text, childrenDTO);
   }
 
   private static convertFromDTO(dto: FSItemDTO): FSItem {
-    const { id, type, name, children } = dto;
+    const { id, type, name, text, children } = dto;
     if (type === 'F') {
-      return new FileItem(Number(id), 'F', name);
+      return new FileItem(Number(id), 'F', name, text);
     } else if (type === 'D') {
-      const directoryItem = new DirectoryItem(Number(id), 'D', name);
+      const directoryItem = new DirectoryItem(Number(id), 'D', name, text);
       if (children) {
         for (const childDTO of children) {
           const childFSItem = FSItemRepository.convertFromDTO(childDTO);
