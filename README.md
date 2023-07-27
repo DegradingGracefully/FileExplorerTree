@@ -1,6 +1,6 @@
-This repository includes the FileExplorerTree component for SvelteKit. It emulates a (really bare) text file system within the browser environment. Data is persisted in the IndexedDB of the browser through the Dexie js API.
+The FileExplorerTree component for SvelteKit emulates a pseudo (very bare) text file system within the browser environment. Data is persisted in the IndexedDB of the browser through the Dexie js API.
 
-It also includes a showcase that integrates FileExplorerTree inside a text editor app:
+This repository also includes a showcase that integrates FileExplorerTree inside a text editor app:
 
 <img alt="Screencast of FileExplorerTree" src="https://github.com/DegradingGracefully/DegradingGracefully/blob/main/FileExplorerTree_screencast.gif">
 
