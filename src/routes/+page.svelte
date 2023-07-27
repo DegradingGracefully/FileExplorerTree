@@ -51,6 +51,18 @@
   }
 </script>
 
+<center>
+  <input
+      type="button"
+      value="Big Global Debug Button!"
+      style="top: 0px ; width: 300px; padding: 10px; margin-bottom: 50px;
+      font-family: calibri,'Font Awesome 5 Free';
+      font-size:20px;
+      display: none"
+      on:click={mainDebugButton}
+  /><br />
+</center>
+
 <main>
   <div class="left-pane">
     <FileExplorerTree
