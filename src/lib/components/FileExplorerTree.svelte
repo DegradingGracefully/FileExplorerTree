@@ -177,6 +177,8 @@
     }
 </script>
 
+<input type="text" id="data-test-cypress-wait-for-svelte-hydratation" style="display: none" value="" autocomplete="off" />
+
 <div class="container">
     <h1>File Explorer</h1>
 
