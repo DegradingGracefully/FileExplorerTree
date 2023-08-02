@@ -5,11 +5,6 @@
   // Get the textContentStore from context
   const textContentStore = getContext("textContentStore");
 
-  // useless ? let textContent = "";
-
-  // Subscribe to changes in the textContentStore and update the textContent
-  // ? $ textContentStore: textContent = $textContentStore;
-
   // Perform updates through the textContentStore
   onMount(() => {
     // ? what is that ? $textContentStore = textContent;
