@@ -1,4 +1,4 @@
-describe("FSItemAPI", () => {
+describe("Testing persistence into Dexie", () => {
   const NEW_FILE_NAME = "I am a new File";
   const NEW_FILE_NAME_RENAMED = "I am a new File and I've been RENAMED";
 

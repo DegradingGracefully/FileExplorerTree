@@ -1,4 +1,4 @@
-describe("FSItemAPI", () => {
+describe("Testing the TextEditor component", () => {
     const NEW_FILE1 = "File 1 FOR TEST";
     const NEW_FILE2 = "File 2 FOR TEST";
     const NEW_FILE1_SOME_TEXT_CONTENT = "Some text content...";
