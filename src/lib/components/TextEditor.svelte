@@ -2,8 +2,7 @@
   import { onMount } from "svelte";
   import { getContext } from "svelte";
 
-  // Get the textContentStore from context
-  const textContentStore = getContext("textContentStore");
+  export let textContentStore;
 
   // Perform updates through the textContentStore
   onMount(() => {

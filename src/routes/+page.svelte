@@ -8,24 +8,15 @@
   /**
    * This main page uses different Svelte mechanisms for keeping track of 2 different variables:
    *
-   * - TEXT CONTENT: for 2 way "binding" of the text content , it uses a svelte store called $textContentStore,
-   * plus the bind:textContent of FileExplorerTree
+   * - TEXT CONTENT: the main page here creates a Svelte store called textContentStore, that only holds
+   * the text content of the current item, and that it provides to both FileExplorerTree and TextEditor as a prop
    *
    * - SELECTED FSITEM: the FileExplorerTree component notifies of a change of selected item
    * by triggering the selectedItemChanged event
    */
   // Create a writable store to hold the textContent
   const textContentStore = writable("");
-  setContext("textContentStore", textContentStore);
-  let textContent: string;
 
-  $: {
-    textContentStore.set(textContent);
-  }
-
-  textContentStore.subscribe((textContentFromStore: string) => {
-    textContent = textContentFromStore;
-  });
   //$: $textContentStore = textContent;
 
   let selectedFSItem: FSItem = undefined;
@@ -66,7 +57,7 @@
 <main>
   <div class="left-pane">
     <FileExplorerTree
-      bind:textContent
+      textContentStore={textContentStore}
       on:selectedFSItemChanged={selectedFSItemChangedHandler}
     />
   </div>
@@ -77,7 +68,7 @@
     {:else}
       <div class="file-name">Please select a file in the left panel to start writing.</div>
     {/if}
-    <TextEditor />
+    <TextEditor textContentStore={textContentStore} />
   </div>
 </main>
 

@@ -9,24 +9,20 @@
 </script>
 
 <script lang="ts">
+    import { createEventDispatcher, onMount } from "svelte";
+
     import { FSItemAPI, fsItemStore } from "$lib/api/FSItemAPI";
     import TreeView from "$lib/components/TreeView.svelte";
     import { FSItemType, type DirectoryItem, type FSItem } from "$lib/models/FSItem";
-    import { createEventDispatcher, onMount } from "svelte";
-    //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
     import { FSItemRepository } from "$lib/api/FSItemRepository";
-    //import { mockRootItem } from "../../tests/cypress/fixtures/fsItemFixture1";
 
-    export let textContent: string = "";
+    // FileExplorerTree only exposes one prop: textContentStore, that serves to communicate bakc and forth
+    // the text of the currently selected file (if the selected item is a file and not a directory)
+    export let textContentStore;
 
     const dispatch = createEventDispatcher();
 
     let selectedFSItem: FSItem = undefined;
-
-    const textContentStore = writable(textContent);
-    $: {
-        textContentStore.set(textContent);
-    }
 
     textContentStore.subscribe((textContentUpdated: string) => {
         if (selectedFSItem) {
@@ -78,7 +74,7 @@
         //console.log("selected item changed. New selected item:");
         //console.log(newSelectedItem);
         selectedFSItem = newSelectedItem;
-        textContent = selectedFSItem.text;
+        $textContentStore = selectedFSItem.text;
         dispatch("selectedFSItemChanged", selectedFSItem);
     }
 
@@ -126,7 +122,7 @@
         if (childItem.type === FSItemType.FILE) {
         // the item just created is a file => we switch to editing this file immediately
             selectedFSItem = childItem;
-            textContent = childItem.text;
+            $textContentStore = childItem.text;
             dispatch("selectedFSItemChanged", selectedFSItem);
         }
     }
