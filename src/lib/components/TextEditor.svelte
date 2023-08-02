@@ -21,6 +21,7 @@
 
 <div class="text-editor">
   <textarea
+    data-test-id="text-editor-text-area"
     value={$textContentStore}
     placeholder="Start writing here..."
     on:input={textInputHandler}
